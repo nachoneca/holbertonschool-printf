@@ -14,34 +14,38 @@ int _printf(const char *format, ...)
     va_list arguments;
     va_start(arguments, format);
 
-    for(; *format != '\0', format++)
-    if(*format != '%')
-{
-    putchar(*format);
-    count++;
-}
-    else
+    for (; *format != '\0'; format++)
     {
-       format++;
-       if(*format == 'c') 
-       {
-        arg_a = va_arg(arguments, int);
-        putchar(arg_a);
-        count++;
-       }
-       else if (*format == 's')
-       arg_b = va_arg(arguments, char *);
-    for(; *arg_b != '\0', arg_b++)
-{
-    putchar(*arg_b);
-    count++;
-}
-else if(*format == '%')
-{
-    putchar('%');
-    count++;
-}
+	    if (*format != '%')
+		    {
+			    putchar(*format);
+			    count++;
+		    }
+	    else
+	    {
+		    format++;
+		    if (*format == 'c')
+		    {
+			    arg_a = va_arg(arguments, int);
+			    putchar(arg_a);
+			    count++;
+		    }
+		    else if (*format == 's')
+		    {
+			    arg_b = va_arg(arguments, char *);
+			    for (; *arg_b != '\0'; arg_b++)
+			    {
+				    putchar(*arg_b);
+				    count++;
+			    }
+		    }
+		    else if (*format == '%')
+		    {
+			    putchar('%');
+			    count++;
+		    }
+	    }
     }
-va_end(arguments);
-return(count);   
+    va_end(arguments);
+    return count;
 }
