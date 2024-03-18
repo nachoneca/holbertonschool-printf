@@ -11,6 +11,7 @@ int _printf(const char *format, ...)
 	int count = 0;
 	char arg_a;
 	char *arg_b;
+	int arg_c;
 	va_list arguments;
 
 	va_start(arguments, format);
@@ -28,7 +29,7 @@ int _printf(const char *format, ...)
 			{
 				;
 			}
-			if (*format == 'c')
+			else if (*format == 'c')
 			{
 				arg_a = va_arg(arguments, int);
 				putchar(arg_a);
@@ -52,6 +53,12 @@ int _printf(const char *format, ...)
 			else if (*format == '%')
 			{
 				putchar('%');
+				count++;
+			}
+			else if (*format == 'd' || *format == 'i')
+			{
+				arg_c = va_arg(arguments, int);
+				printf("%d", arg_c);
 				count++;
 			}
 			else
