@@ -8,6 +8,7 @@
 */
 int _printf(const char *format, ...)
 {
+	int divisor = 1;
 	int count = 0;
 	char arg_a;
 	char *arg_b;
@@ -58,8 +59,24 @@ int _printf(const char *format, ...)
 			else if (*format == 'd' || *format == 'i')
 			{
 				arg_c = va_arg(arguments, int);
-				printf("%d", arg_c);
-				count++;
+				 if (arg_c < 0) {
+        putchar('-');
+        count++;
+        arg_c = -arg_c;
+    }
+    
+   
+    while (arg_c / divisor >= 10) {
+        divisor *= 10;
+    }
+ 
+    while (divisor != 0) {
+        putchar('0' + arg_c / divisor);
+        count++;
+        arg_c %= divisor;
+        divisor /= 10;
+    }
+
 			}
 			else
 			{
