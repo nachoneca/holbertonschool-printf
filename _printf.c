@@ -8,12 +8,14 @@
 */
 int _printf(const char *format, ...)
 {
-	int divisor = 1;
 	int count = 0;
 	char arg_a;
 	char *arg_b;
 	int arg_c;
+	int longitud;
+	char *array_n;
 	va_list arguments;
+	int i;
 
 	va_start(arguments, format);
 	for (; *format != '\0'; format++)
@@ -59,24 +61,26 @@ int _printf(const char *format, ...)
 			else if (*format == 'd' || *format == 'i')
 			{
 				arg_c = va_arg(arguments, int);
-				 if (arg_c < 0) {
-        putchar('-');
-        count++;
-        arg_c = -arg_c;
-    }
-    
-   
-    while (arg_c / divisor >= 10) {
-        divisor *= 10;
-    }
- 
-    while (divisor != 0) {
-        putchar('0' + arg_c / divisor);
-        count++;
-        arg_c %= divisor;
-        divisor /= 10;
-    }
-
+				longitud = snprintf(NULL, 0, "%d", arg_c);
+				array_n = (char *)malloc((longitud + 2) * sizeof(char));
+				if (array_n != NULL)
+				{
+					if (arg_c < 0) 
+					{
+						array_n[0] = '-';
+						arg_c = -arg_c;
+					}
+					else
+					{	
+					snprintf(array_n, longitud + 1, "%d", arg_c);
+					for (i = 0; i < longitud; i++)
+					{
+						putchar(array_n[i]);
+						count++;
+					}
+					}
+				free(array_n);
+				}
 			}
 			else
 			{
