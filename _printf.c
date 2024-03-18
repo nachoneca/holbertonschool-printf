@@ -1,11 +1,11 @@
 #include "main.h"
+
 /*
  * _printf - produces output according to a format.
  * @format: Pointer to a charstring to a constant char.
  * Return: number of characters printed
  * (excluding the null byte used to end output to strings)
  */
-
 int _printf(const char *format, ...)
 {
     int count = 0;
@@ -13,7 +13,10 @@ int _printf(const char *format, ...)
     int arg_b;
     char *arg_c;
     va_list arguments;
-
+    int len = 0;
+    char str[1000];
+    int i = len - 1;
+    
     va_start(arguments, format);
 
     for (; *format != '\0'; format++)
@@ -55,19 +58,21 @@ int _printf(const char *format, ...)
             else if (*format == 'd' || *format == 'i')
             {
                 arg_b = va_arg(arguments, int);
+                
                 if (arg_b < 0)
                 {
-                    putchar('-');
-                    count++;
-                    count += _printf("-d", -arg_b);
+                    str[len++] = '-';
+                    arg_b = -arg_b;
                 }
-                else
+                do
                 {
-                    if (arg_b >= 10)
-                    {
-                        count += _printf("d", arg_b / 10);
-                    }
-                    putchar(arg_b % 10 + '0');
+                    str[len++] = arg_b % 10 + '0';
+                    arg_b /= 10;
+                }
+				while (arg_b != 0);
+                for (; i >= 0; i--)
+                {
+                    putchar(str[i]);
                     count++;
                 }
             }
