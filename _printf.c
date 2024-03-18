@@ -1,95 +1,113 @@
 #include "main.h"
 
 /**
-* _printf - produces output according to a format.
-* @format: Pointer to a charstring to a constant char.
-* Return: number of characters printed
-* (excluding the null byte used to end output to strings)
-*/
+ * _putchar - Writes a character to stdout.
+ * @c: The character to print.
+ *
+ * Return: On success, the number of characters printed.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+    return (write(1, &c, 1));
+}
+
+/**
+ * _puts - Prints a string to stdout.
+ * @str: The string to print.
+ *
+ * Return: The number of characters printed.
+ */
+int _puts(char *str)
+{
+    int count = 0;
+
+    if (str == NULL)
+        return -1;
+
+    while (*str != '\0')
+    {
+        count += _putchar(*str);
+        str++;
+    }
+
+    count += _putchar('\n');
+
+    return count;
+}
+
+/**
+ * _print_int - Prints an integer.
+ * @n: The integer to print.
+ *
+ * Return: The number of characters printed.
+ */
+int _print_int(int n)
+{
+    int count = 0;
+
+    if (n < 0)
+    {
+        count += _putchar('-');
+        n = -n;
+    }
+
+    if (n / 10 != 0)
+        count += _print_int(n / 10);
+
+    count += _putchar(n % 10 + '0');
+
+    return count;
+}
+
+/**
+ * _printf - Produces output according to a format.
+ * @format: A character string.
+ *
+ * Return: The number of characters printed.
+ */
 int _printf(const char *format, ...)
 {
-	int count = 0;
-	char arg_a;
-	char *arg_b;
-	int arg_c;
-	int longitud;
-	char *array_n;
-	va_list arguments;
-	int i;
+    va_list args;
+    int count = 0;
 
-	va_start(arguments, format);
-	for (; *format != '\0'; format++)
-	{
-		if (*format != '%')
-		{
-			putchar(*format);
-			count++;
-		}
-		else
-		{
-			format++;
-			if (*format == '\0')
-			{
-				;
-			}
-			else if (*format == 'c')
-			{
-				arg_a = va_arg(arguments, int);
-				putchar(arg_a);
-				count++;
-			}
-			else if (*format == 's')
-			{
-				arg_b = va_arg(arguments, char *);
-				if (arg_b == NULL)
-				{
-					printf("(null)");
-					count += 6;
-				}
-				else
-					for (; *arg_b != '\0'; arg_b++)
-					{
-						putchar(*arg_b);
-						count++;
-					}
-			}
-			else if (*format == '%')
-			{
-				putchar('%');
-				count++;
-			}
-			else if (*format == 'd' || *format == 'i')
-			{
-				arg_c = va_arg(arguments, int);
-				longitud = snprintf(NULL, 0, "%d", arg_c);
-				array_n = (char *)malloc((longitud + 2) * sizeof(char));
-				if (array_n != NULL)
-				{
-					if (arg_c < 0) 
-					{
-						array_n[0] = '-';
-						arg_c = -arg_c;
-					}
-					else
-					{	
-					snprintf(array_n, longitud + 1, "%d", arg_c);
-					for (i = 0; i < longitud; i++)
-					{
-						putchar(array_n[i]);
-						count++;
-					}
-					}
-				free(array_n);
-				}
-			}
-			else
-			{
-				putchar('%');
-				putchar(*format);
-				count += 2;
-			}
-		}
-	}
-	va_end(arguments);
-	return (count);
+    va_start(args, format);
+
+    if (format == NULL)
+        return -1;
+
+    while (*format != '\0')
+    {
+        if (*format == '%')
+        {
+            format++;
+            switch (*format)
+            {
+                case 'c':
+                    count += _putchar(va_arg(args, int));
+                    break;
+                case 's':
+                    count += _puts(va_arg(args, char *));
+                    break;
+                case '%':
+                    count += _putchar('%');
+                    break;
+                case 'd':
+                case 'i':
+                    count += _print_int(va_arg(args, int));
+                    break;
+                default:
+                    count += _putchar(*format);
+            }
+        }
+        else
+        {
+            count += _putchar(*format);
+        }
+        format++;
+    }
+
+    va_end(args);
+
+    return count;
 }
