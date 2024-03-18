@@ -33,7 +33,7 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				arg_b = va_arg(arguments, char *);
-				if (str_arg == NULL)
+				if (arg_b == NULL)
 				{
 					printf("(null)");
 					count += 6;
