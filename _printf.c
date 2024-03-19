@@ -18,32 +18,6 @@ int _putchar(char c)
  *
  * Return: The number of characters printed.
  */
-int _puts(char *str)
-{
-    int count = 0;
-
-    if (str == NULL)
-    {
-   	    putchar('(');
-	 putchar('n');
-	 putchar('u');
-	 putchar('l');
-	 putchar('l');
-	 putchar(')');
-	 count += 6;
-	 return count;
-	}
-
-    else 
-    {
-        for (; *str != '\0'; str++)
-	{
-		putchar(*str);
-		count++;
-       }
-    }
-    return count;
-}
 
 /**
  * _print_int - Prints an integer.
@@ -79,6 +53,7 @@ int _printf(const char *format, ...)
 {
     va_list args;
     int count = 0;
+    char *arg_b;
 
     va_start(args, format);
 
@@ -96,7 +71,21 @@ int _printf(const char *format, ...)
                     count += _putchar(va_arg(args, int));
                     break;
                 case 's':
-                     _puts(va_arg(args, char *));
+		    {
+		    arg_b = va_arg(args, char *);
+                                if (arg_b == NULL)
+                                {
+                                        printf("(null)");
+                                        count += 6;
+                                }
+                                else
+                                        for (; *arg_b != '\0'; arg_b++)
+                                        {
+                                                putchar(*arg_b);
+                                                count++;
+                                        }
+
+		    }
                     break;
                 case '%':
                     count += _putchar('%');
