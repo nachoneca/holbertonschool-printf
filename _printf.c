@@ -99,7 +99,7 @@ int _printf(const char *format, ...)
                     count += _putchar(va_arg(args, int));
                     break;
                 case 's':
-                    count += _puts(va_arg(args, char *));
+                     _puts(va_arg(args, char *));
                     break;
                 case '%':
                     count += _putchar('%');
