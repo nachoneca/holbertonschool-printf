@@ -42,7 +42,7 @@ int _puts(char *str)
  *
  * Return: The number of characters printed.
  */
-int _print_int(int n)
+int _print_int(long int n)
 {
     int count = 0;
 
