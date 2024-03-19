@@ -69,18 +69,20 @@ int _printf(const char *format, ...)
                 if (*format == 'c')
                     count += _putchar(va_arg(args, int));
                 if (*format == 's')
-		{    arg_b = va_arg(args, char *);
-                                if (arg_b == NULL)
-                                {
-                                        count += printf("(null)");
+		{    
+			arg_b = va_arg(args, char *);
+                        if (arg_b == NULL)
+                        {
+                             printf("(null)");
+			     count += 6;
                                         
-                                }
-                                else
-                                        for (; *arg_b != '\0'; arg_b++)
-                                        {
-                                                putchar(*arg_b);
-                                                count++;
-                                        }  
+                        }
+                        else
+                        	for (; *arg_b != '\0'; arg_b++)
+                                {
+                                	putchar(*arg_b);
+                                        count++;
+                                }  
 		}
                 if (*format == '%')
                     count += _putchar('%');
