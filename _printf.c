@@ -73,12 +73,12 @@ int _printf(const char *format, ...)
 			arg_b = va_arg(args, char *);
 			if (arg_b == NULL)
                         {
-                             putchar('(');
-			     putchar('n');
-			     putchar('u');
-			     putchar('l');
-			     putchar('l');
-			     putchar(')');
+                             _putchar('(');
+			     _putchar('n');
+			     _putchar('u');
+			     _putchar('l');
+			     _putchar('l');
+			     _putchar(')');
 			     count += 6;
                                         
                         }
