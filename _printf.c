@@ -23,23 +23,17 @@ int _puts(char *str)
     int count = 0;
 
     if (str == NULL)
+        return -1;
+
+    while (*str != '\0')
     {
-	    putchar('(');
-	    putchar('n');
-	    putchar('u');
-	    putchar('l');
-	    putchar('l');
-	    putchar(')');
-	    count += 6;
+        count += _putchar(*str);
+        str++;
     }
-    else
-    {
-    for (; *str != '\0'; str++)
-    {
-        _putchar(*str);
-        count++;
-    }
-	return count;
+
+    count += _putchar('\n');
+
+    return count;
 }
 
 /**
@@ -48,7 +42,7 @@ int _puts(char *str)
  *
  * Return: The number of characters printed.
  */
-int _print_int(long int n)
+int _print_int(int n)
 {
     int count = 0;
 
