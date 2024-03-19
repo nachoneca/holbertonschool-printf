@@ -42,9 +42,6 @@ int _puts(char *str)
 		count++;
        }
     }
-
-    count += _putchar('\n');
-
     return count;
 }
 
