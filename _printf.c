@@ -71,7 +71,6 @@ int _printf(const char *format, ...)
 		else if (*format == 's')
 		{    
 			arg_b = va_arg(args, char *);
-                        /*printf("\n%s\n", arg_b);*/
 			if (arg_b == NULL)
                         {
                              putchar('(');
@@ -87,8 +86,7 @@ int _printf(const char *format, ...)
 			{
                         	for (; *arg_b != '\0'; arg_b++)
                                 {
-                                	/*printf("\n");*/
-					putchar(*arg_b);
+					_putchar(*arg_b);
                                         count++;
                                 }
 			}	
