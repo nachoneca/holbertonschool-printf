@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * _putchar - Writes a character to stdout.
  * @c: The character to print.
@@ -57,7 +56,7 @@ int _printf(const char *format, ...)
 
     va_start(args, format);
 
-    if (format == NULL)
+	  if (format == NULL)
         return -1;
 
     for (;*format != '\0'; format++)
@@ -68,26 +67,36 @@ int _printf(const char *format, ...)
             {
                 if (*format == 'c')
                     count += _putchar(va_arg(args, int));
-                if (*format == 's')
+
+		else if (*format == 's')
 		{    
 			arg_b = va_arg(args, char *);
-                        if (arg_b == NULL)
+                        /*printf("\n%s\n", arg_b);*/
+			if (arg_b == NULL)
                         {
-                             printf("(null)");
+                             putchar('(');
+			     putchar('n');
+			     putchar('u');
+			     putchar('l');
+			     putchar('l');
+			     putchar(')');
 			     count += 6;
                                         
                         }
                         else
+			{
                         	for (; *arg_b != '\0'; arg_b++)
                                 {
-                                	putchar(*arg_b);
+                                	/*printf("\n");*/
+					putchar(*arg_b);
                                         count++;
-                                }  
+                                }
+			}	
 		}
-                if (*format == '%')
+		else if (*format == '%')
                     count += _putchar('%');
 
-                if (*format == 'd' || *format == 'i')
+		else if (*format == 'd' || *format == 'i')
                     count += _print_int(va_arg(args, int));
                 
              
