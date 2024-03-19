@@ -23,12 +23,24 @@ int _puts(char *str)
     int count = 0;
 
     if (str == NULL)
-        return -1;
-
-    while (*str != '\0')
     {
-        count += _putchar(*str);
-        str++;
+   	    putchar('(');
+	 putchar('n');
+	 putchar('u');
+	 putchar('l');
+	 putchar('l');
+	 putchar(')');
+	 count += 6;
+	 return count;
+	}
+
+    else 
+    {
+        for (; *str != '\0'; str++)
+	{
+		putchar(*str);
+		count++;
+       }
     }
 
     count += _putchar('\n');
