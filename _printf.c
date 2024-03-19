@@ -63,7 +63,7 @@ int _printf(const char *format, ...)
                         else if (*format == 'd' || *format == 'i')
                         {
                                 arg_c = va_arg(arguments, long int);
-                                longitud = snprintf(NULL, 0, "%d", arg_c);
+                                longitud = snprintf(NULL, 0, "%ld", arg_c);
                                 array_n = (char *)malloc((longitud + 2) * sizeof(char));
                                 if (array_n != NULL)
                                 {
@@ -74,7 +74,7 @@ int _printf(const char *format, ...)
                                         }
                                         else
                                         {
-                                        snprintf(array_n, longitud + 1, "%d", arg_c);
+                                        snprintf(array_n, longitud + 1, "%ld", arg_c);
                                         for (i = 0; i < longitud; i++)
                                         {
                                                 putchar(array_n[i]);
