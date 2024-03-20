@@ -30,16 +30,16 @@ int _print_int(long int n)
 
     if (n < 0)
     {
-        count += _putchar('-');
-        n = -n;
+	count += _putchar('-');
+	n = -n;
     }
 
     if (n / 10 != 0)
-        count += _print_int(n / 10);
+	count += _print_int(n / 10);
 
     count += _putchar(n % 10 + '0');
 
-    return count;
+    return (count);
 }
 
 /**
@@ -56,7 +56,7 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 	if (format == NULL)
-		return -1;
+		return (-1);
 
 	for (;*format != '\0'; format++)
 	{
@@ -65,7 +65,7 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == '\0')
 			{	
-				return -1;
+				return (-1);
 				break;
 			}
 
@@ -116,5 +116,5 @@ int _printf(const char *format, ...)
 		}
 	}
     	va_end(args);
-	return count;
+	return (count);
 }
