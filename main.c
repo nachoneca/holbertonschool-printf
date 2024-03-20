@@ -17,7 +17,7 @@ int main(void)
     len2 = printf("Let's try to printf a simple sentence.\n");
     ui = (unsigned int)INT_MAX + 1024;*/
     _printf("Complete the sentence: You %s nothing, Jon Snow.\n", "know");
-    _printf("%\n");
+    _printf("%");
     _printf("%!\n");
     _printf("%k\n");
     _printf("hola\n");
