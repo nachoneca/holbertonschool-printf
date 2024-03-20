@@ -8,7 +8,7 @@
  */
 int _putchar(char c)
 {
-    return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 
 /**
@@ -26,20 +26,19 @@ int _putchar(char c)
  */
 int _print_int(long int n)
 {
-    int count = 0;
+	int count = 0;
 
-    if (n < 0)
-    {
+	if (n < 0)
+	{
 	count += _putchar('-');
 	n = -n;
-    }
+	}
 
-    if (n / 10 != 0)
-	count += _print_int(n / 10);
+	if (n / 10 != 0)
+		count += _print_int(n / 10);
 
-    count += _putchar(n % 10 + '0');
-
-    return (count);
+	count += _putchar(n % 10 + '0');
+	return (count);
 }
 
 /**
@@ -58,15 +57,14 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 
-	for (;*format != '\0'; format++)
+	for (; *format != '\0'; format++)
 	{
 		if (*format == '%')
 		{
 			format++;
 			if (*format == '\0')
-			{	
+			{
 				return (-1);
-				break;
 			}
 
 			if (*format == 'c')
@@ -115,6 +113,6 @@ int _printf(const char *format, ...)
 			count++;
 		}
 	}
-    	va_end(args);
+	va_end(args);
 	return (count);
 }
