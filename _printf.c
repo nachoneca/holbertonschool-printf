@@ -95,7 +95,14 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'd' || *format == 'i')
 				count += _print_int(va_arg(args, int));
-                }
+
+			else
+			{
+				_putchar('%');
+				_putchar(*format);
+				count += 2;
+			}
+		}
 		else
 		{
 			_putchar(*format);
