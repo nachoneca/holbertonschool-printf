@@ -13,7 +13,6 @@ int _printf(const char *format, ...);
  */
 void _print_string(char *str, int *count);
 /*
- *_print_char_and_format - print cgar anf f
  *@format_char: char given
  *@count: contador
  */
